@@ -20,8 +20,8 @@ public class GenerateCode {
     /**
      * 将路径下的Excel文件转换成数值
      * @param path
-     * @param starRow
-     * @param startCol
+     * @param starRow 起始读取行，一般为0即可，每次读取行数为16行
+     * @param startCol 起始读取列，每次读取列数为26列，所以一个Excel可能需要多次读取，通过设置startCol来全部读取Excel
      * @return
      */
     public static List<List<Integer>> excelToNums(String path, int starRow, int startCol){
@@ -29,14 +29,16 @@ public class GenerateCode {
     }
 
     /**
-     * 以指定Excel文件为模板，通过位移获取其他Excel文件，然后将他们转换成数值
-     * @param path
+     * 以指定Excel文件为模板，通过平移生成其他Excel文件，然后将他们转换成数值
+     * @param excelPath
      * @param starRow
      * @param startCol
+     * @param readCols
+     * @param amount 屏幕数，一般不用改，为2即可，每块屏幕16行26列
      * @return
      */
-    public static List<List<Integer>> translationExcelToNums(String path, int starRow, int startCol, int readCols, int amount){
-        List<Workbook> workbooks = ExcelUtil.translationPattern(new File(path), 16, readCols, amount);
+    public static List<List<Integer>> translationExcelToNums(String excelPath, int starRow, int startCol, int readCols, int amount){
+        List<Workbook> workbooks = ExcelUtil.translationPattern(new File(excelPath), 16, readCols, amount);
         return ExcelUtil.getExcelNums(workbooks, starRow, startCol);
     }
 

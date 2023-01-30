@@ -21,6 +21,11 @@ import static club.xiaojiawei.enums.ExcelTypeEnum.XLSX;
 public class GenerateExcel {
     /**
      * 读取视频抽帧然后生成Excel
+     * @param imagePath
+     * @param videoPath
+     * @param pixelationImagePath
+     * @param excelPath
+     * @param pixelSize
      */
     public static void imagesToExcel(
             String imagePath,
